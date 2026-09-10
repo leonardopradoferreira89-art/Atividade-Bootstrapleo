@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Italia Ristorante - Sabor e Tradição</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bs-primary: #8b0000;
+            --bs-primary-rgb: 139, 0, 0;
+            --bs-secondary: #d4af37;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f6;
+            color: #333;
+        }
+        h1, h2, h3, h4, h5, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-wine {
+            background-color: #8b0000 !important;
+        }
+        .text-wine {
+            color: #8b0000 !important;
+        }
+        .btn-wine {
+            background-color: #8b0000;
+            color: white;
+            border: none;
+        }
+        .btn-wine:hover {
+            background-color: #600000;
+            color: white;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            padding: 120px 0;
+        }
+        .card-img-top {
+            height: 220px;
+            object-fit: cover;
+        }
+        .section-view {
+            display: none;
+        }
+        .section-view.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-wine sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 font-serif" href="#" onclick="switchTab('inicio')">
+                <i class="fa-solid fa-utensils me-2"></i>Bella Italia
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active px-3" href="#" id="nav-inicio" onclick="switchTab('inicio')">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#" id="nav-cardapio" onclick="switchTab('cardapio')">Cardápio & Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#" id="nav-bootstrap" onclick="switchTab('bootstrap')">Conhecendo o Bootstrap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#" id="nav-readme" onclick="switchTab('readme')">README.md</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <button class="btn btn-outline-light btn-sm rounded-pill px-3 position-relative" onclick="openCartModal()">
+                            <i class="fa-solid fa-cart-shopping me-1"></i> Carrinho
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="view-inicio" class="section-view active">
+        <header class="hero-section text-center">
+            <div class="container">
+                <h1 class="display-3 fw-bold mb-3">Autêntica Culinária Italiana</h1>
+                <p class="lead mb-4 col-lg-8 mx-auto">Receitas tradicionais elaboradas com ingredientes frescos da mais alta qualidade, trazendo o verdadeiro sabor da Itália para a sua mesa.</p>
+                <button class="btn btn-wine btn-lg px-5 py-3 rounded-pill fw-bold shadow" onclick="switchTab('cardapio')">Ver Cardápio & Reservas</button>
+            </div>
+        </header>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <h2 class="fw-bold mb-4 text-wine">Tradição e Paixão em Cada Prato</h2>
+                        <p class="text-muted">Fundado em 2012, o Bella Italia nasceu do sonho de compartilhar receitas de família passadas de geração em geração. Nossa massa é fresca e feita diariamente à mão.</p>
+                        <p class="text-muted">Trabalhamos com ingredientes importados diretamente da Itália combinados com o melhor da produção local.</p>
+                        <div class="alert alert-danger border-0 shadow-sm mt-4">
+                            <i class="fa-solid fa-clock me-2"></i> <strong>Horário de Funcionamento:</strong> Terça a Domingo das 18h às 23h30.
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Restaurante Interior" class="img-fluid rounded-4 shadow">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards de Destaque -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-5 text-wine">Por que nos escolher?</h2>
+                <div class="row g-4">
+                    <div class="col-12 col-md-4">
+                        <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4">
+                            <div class="card-body">
+                                <div class="text-wine fs-1 mb-3"><i class="fa-solid fa-wheat-awn"></i></div>
+                                <h4 class="card-title fw-bold">Massas Artesanais</h4>
+                                <p class="card-text text-muted">Feitas à mão diariamente, garantindo textura e sabor incomparáveis em cada garfada.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4">
+                            <div class="card-body">
+                                <div class="text-wine fs-1 mb-3"><i class="fa-solid fa-wine-glass-empty"></i></div>
+                                <h4 class="card-title fw-bold">Adega Selecionada</h4>
+                                <p class="card-text text-muted">Rótulos premiados de vinícolas tradicionais para harmonização perfeita com nossos pratos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4">
+                            <div class="card-body">
+                                <div class="text-wine fs-1 mb-3"><i class="fa-solid fa-heart"></i></div>
+                                <h4 class="card-title fw-bold">Ambiente Acolhedor</h4>
+                                <p class="card-text text-muted">Decoração sofisticada e romântica, ideal para jantares a dois e comemorações especiais.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="view-cardapio" class="section-view">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-wine font-serif">Cardápio & Reservas</h2>
+                <p class="text-muted">Conheça nossas especialidades e garanta sua mesa com antecedência.</p>
+            </div>
+
+            <!-- Listagem de Pratos -->
+            <div class="row g-4 mb-5" id="menu-grid">
+                <!-- Prato 1 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100 rounded-4">
+                        <div class="position-relative overflow-hidden">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-success fs-6 shadow-sm">R$ 89,90</span>
+                            <img src="https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Risoto de Camarão">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-2 font-serif">Risoto de Camarão</h5>
+                            <p class="card-text text-muted flex-grow-1 small">Arroz arbóreo cremoso com camarões G flambados no vinho branco, raspas de limão siciliano e parmesão.</p>
+                            <button class="btn btn-wine w-100 rounded-pill fw-bold mt-3 shadow-sm" onclick="addToCart('Risoto de Camarão', 89.90)">
+                                <i class="fa-solid fa-cart-plus me-2"></i>Pedir Agora (R$ 89,90)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prato 2 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100 rounded-4">
+                        <div class="position-relative overflow-hidden">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-success fs-6 shadow-sm">R$ 98,00</span>
+                            <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Filé Mignon ao Molho de Vinho">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-2 font-serif">Filé Mignon ao Vinho</h5>
+                            <p class="card-text text-muted flex-grow-1 small">Medalhão de filé mignon grelhado ao ponto, coberto com molho encorpado de vinho tinto e acompanhado de risoto al burro.</p>
+                            <button class="btn btn-wine w-100 rounded-pill fw-bold mt-3 shadow-sm" onclick="addToCart('Filé Mignon ao Vinho', 98.00)">
+                                <i class="fa-solid fa-cart-plus me-2"></i>Pedir Agora (R$ 98,00)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prato 3 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100 rounded-4">
+                        <div class="position-relative overflow-hidden">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-success fs-6 shadow-sm">R$ 79,90</span>
+                            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Tortelli de Confit de Pato">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-2 font-serif">Tortelli de Confit de Pato</h5>
+                            <p class="card-text text-muted flex-grow-1 small">Massa artesanal recheada com confit de pato desfiado ao molho de manteiga noisette, sálvia fresca e castanhas tostadas.</p>
+                            <button class="btn btn-wine w-100 rounded-pill fw-bold mt-3 shadow-sm" onclick="addToCart('Tortelli de Confit de Pato', 79.90)">
+                                <i class="fa-solid fa-cart-plus me-2"></i>Pedir Agora (R$ 79,90)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prato 4 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100 rounded-4">
+                        <div class="position-relative overflow-hidden">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-success fs-6 shadow-sm">R$ 69,90</span>
+                            <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Lasanha à Bolognese">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-2 font-serif">Lasanha à Bolognese</h5>
+                            <p class="card-text text-muted flex-grow-1 small">Camadas de massa fresca intercaladas com ragu de carne bovina, molho bechamel artesanal e gratinada com parmesão.</p>
+                            <button class="btn btn-wine w-100 rounded-pill fw-bold mt-3 shadow-sm" onclick="addToCart('Lasanha à Bolognese', 69.90)">
+                                <i class="fa-solid fa-cart-plus me-2"></i>Pedir Agora (R$ 69,90)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prato 5 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100 rounded-4">
+                        <div class="position-relative overflow-hidden">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-success fs-6 shadow-sm">R$ 64,90</span>
+                            <img src="https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Spaghetti à Carbonara">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-2 font-serif">Spaghetti à Carbonara</h5>
+                            <p class="card-text text-muted flex-grow-1 small">Receita tradicional com guanciale italiano, gemas de ovos orgânicos, queijo Pecorino Romano e pimenta preta moída na hora.</p>
+                            <button class="btn btn-wine w-100 rounded-pill fw-bold mt-3 shadow-sm" onclick="addToCart('Spaghetti à Carbonara', 64.90)">
+                                <i class="fa-solid fa-cart-plus me-2"></i>Pedir Agora (R$ 64,90)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prato 6 -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100 rounded-4">
+                        <div class="position-relative overflow-hidden">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-success fs-6 shadow-sm">R$ 92,00</span>
+                            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Salmão Grelhado com Ervas">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-2 font-serif">Salmão Grelhado</h5>
+                            <p class="card-text text-muted flex-grow-1 small">Posta de salmão fresco grelhada com crosta de ervas finas, servida com legumes rústicos salteados no azeite extravirgem.</p>
+                            <button class="btn btn-wine w-100 rounded-pill fw-bold mt-3 shadow-sm" onclick="addToCart('Salmão Grelhado', 92.00)">
+                                <i class="fa-solid fa-cart-plus me-2"></i>Pedir Agora (R$ 92,00)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de Reservas -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 bg-wine text-white">
+                        <h3 class="fw-bold mb-3 font-serif text-center text-white">Faça a sua Reserva</h3>
+                        <p class="text-center mb-4 text-white">Garantimos um <strong class="text-white">Atendimento Exclusivo</strong> para o seu momento especial.</p>
+                        
+                        <form onsubmit="handleReservation(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label text-white">Nome Completo</label>
+                                    <input type="text" class="form-control rounded-3" id="res-nome" required placeholder="Seu nome">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-white">E-mail ou Telefone</label>
+                                    <input type="text" class="form-control rounded-3" id="res-contato" required placeholder="(11) 99999-9999">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-white">Data</label>
+                                    <input type="date" class="form-control rounded-3" id="res-data" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-white">Horário</label>
+                                    <select class="form-select rounded-3" id="res-horario" required>
+                                        <option value="">Escolha...</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="22:00">22:00</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-white">Número de Pessoas</label>
+                                    <select class="form-select rounded-3" id="res-pessoas" required>
+                                        <option value="1">1 Pessoa</option>
+                                        <option value="2" selected>2 Pessoas</option>
+                                        <option value="4">4 Pessoas</option>
+                                        <option value="6+">6+ Pessoas</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mt-4 text-center">
+                                    <button type="submit" class="btn btn-light btn-lg px-5 text-wine fw-bold rounded-pill shadow">Confirmar Reserva</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-bootstrap" class="section-view">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-wine font-serif">Conhecendo o Bootstrap</h2>
+                <p class="text-muted">Guia completo sobre a ferramenta e os conceitos aplicados neste projeto.</p>
+            </div>
+
+            <div class="row g-5">
+                <!-- O que é e para que serve -->
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                        <h3 class="fw-bold text-wine mb-3"><i class="fa-solid fa-circle-question me-2"></i>O que é o Bootstrap?</h3>
+                        <p class="text-muted">O Bootstrap é o framework front-end mais popular do mundo para desenvolvimento web ágil, responsivo e baseado em componentes reutilizáveis.</p>
+                        <h5 class="fw-bold text-wine mt-4 mb-2">Para que serve?</h5>
+                        <p class="text-muted">Ele resolve problemas complexos de compatibilidade entre navegadores e acelera o design de interfaces através de classes CSS prontas e padronizadas, dispensando a necessidade de escrever todo o CSS do zero.</p>
+                    </div>
+                </div>
+
+                <!-- Sistema de Grid -->
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                        <h3 class="fw-bold text-wine mb-3"><i class="fa-solid fa-table-cells me-2"></i>Sistema de Grid</h3>
+                        <p class="text-muted">O sistema de grid do Bootstrap utiliza uma estrutura de 12 colunas flexíveis baseada em flexbox.</p>
+                        <ul class="text-muted small ps-3">
+                            <li><code>.container</code>: Centraliza e limita a largura do conteúdo na tela.</li>
+                            <li><code>.row</code>: Cria uma linha horizontal para agrupar colunas e alinhar espaçamentos.</li>
+                            <li><code>.col</code>, <code>.col-md-*</code>, <code>.col-lg-*</code>: Definem a largura proporcional do elemento de acordo com o tamanho do dispositivo (celular, tablet, monitor).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Responsividade -->
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm rounded-4 p-4">
+                        <h3 class="fw-bold text-wine mb-3"><i class="fa-solid fa-mobile-screen-button me-2"></i>Design Responsivo</h3>
+                        <p class="text-muted">O design responsivo permite que a aplicação adapte sua estrutura visual perfeitamente para qualquer tipo de tela:</p>
+                        <div class="row text-center g-3 mt-2">
+                            <div class="col-6 col-md-3">
+                                <div class="p-3 bg-light rounded-3">
+                                    <i class="fa-solid fa-mobile fs-2 text-wine mb-2"></i>
+                                    <h6 class="fw-bold">Celulares</h6>
+                                    <span class="small text-muted">1 coluna (col-12)</span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="p-3 bg-light rounded-3">
+                                    <i class="fa-solid fa-tablet-screen-button fs-2 text-wine mb-2"></i>
+                                    <h6 class="fw-bold">Tablets</h6>
+                                    <span class="small text-muted">2 colunas (col-md-6)</span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="p-3 bg-light rounded-3">
+                                    <i class="fa-solid fa-laptop fs-2 text-wine mb-2"></i>
+                                    <h6 class="fw-bold">Notebooks</h6>
+                                    <span class="small text-muted">3 colunas (col-lg-4)</span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="p-3 bg-light rounded-3">
+                                    <i class="fa-solid fa-desktop fs-2 text-wine mb-2"></i>
+                                    <h6 class="fw-bold">Monitores</h6>
+                                    <span class="small text-muted">Layout fluido</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 Componentes Utilizados -->
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm rounded-4 p-4">
+                        <h3 class="fw-bold text-wine mb-4"><i class="fa-solid fa-cubes me-2"></i>5 Componentes Principais Utilizados no Projeto</h3>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <h5 class="fw-bold text-dark">1. Navbar</h5>
+                                <p class="text-muted small">Barra de navegação superior responsiva com colapso automático em dispositivos móveis.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="fw-bold text-dark">2. Cards</h5>
+                                <p class="text-muted small">Utilizados para estruturar de forma organizada os pratos do cardápio e os diferenciais do restaurante.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="fw-bold text-dark">3. Botões (Btn)</h5>
+                                <p class="text-muted small">Elementos interativos estilizados com cores padronizadas (`btn-wine`, `btn-outline-light`).</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="fw-bold text-dark">4. Alertas (Alert)</h5>
+                                <p class="text-muted small">Caixas de aviso informativas com destaque visual para horários e status.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="fw-bold text-dark">5. Formulários & Modais</h5>
+                                <p class="text-muted small">Campos de entrada e janelas flutuantes interativas para reservas e carrinho de pedidos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-readme" class="section-view">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+                        <h2 class="fw-bold text-wine mb-3 font-serif">README.md — Documentação do Projeto</h2>
+                        <hr class="mb-4">
+                        <h4 class="fw-bold text-dark">Nome do Projeto</h4>
+                        <p class="text-muted">Bella Italia Ristorante — Site Responsivo com Bootstrap 5</p>
+
+                        <h4 class="fw-bold text-dark mt-4">Autor(a)</h4>
+                        <p class="text-muted">Desenvolvido por Estudante / Desenvolvedor Web</p>
+
+                        <h4 class="fw-bold text-dark mt-4">Descrição do Projeto</h4>
+                        <p class="text-muted">Aplicação web completa desenvolvida com HTML5, JavaScript e Bootstrap 5, simulando o site oficial de um restaurante italiano com cardápio gourmet interativo, sistema de reservas online, carrinho de compras e módulo completo de pagamento.</p>
+
+                        <h4 class="fw-bold text-dark mt-4">Tecnologias Utilizadas</h4>
+                        <ul class="text-muted">
+                            <li>HTML5 / CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>Bootstrap 5 (CDN)</li>
+                            <li>FontAwesome 6.4.0</li>
+                            <li>Google Fonts (Playfair Display & Inter)</li>
+                        </ul>
+
+                        <h4 class="fw-bold text-dark mt-4">Links de Publicação</h4>
+                        <p class="text-muted mb-1"><strong>Repositório GitHub:</strong> <a href="https://github.com/seu-usuario/bella-italia" target="_blank" class="text-wine">github.com/seu-usuario/bella-italia</a></p>
+                        <p class="text-muted"><strong>Site Publicado no Vercel:</strong> <a href="https://bella-italia.vercel.app" target="_blank" class="text-wine">bella-italia.vercel.app</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-1 fw-bold font-serif fs-5">Bella Italia Ristorante</p>
+            <p class="text-white-50 small mb-2">&copy; 2026 Todos os direitos reservados. Projeto Acadêmico Bootstrap 5.</p>
+            <p class="text-white-50 small"><i class="fa-solid fa-location-dot me-1"></i> Rua della Gastronomia, 123 — São Paulo, SP</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header bg-wine text-white">
+                    <h5 class="modal-title font-serif fw-bold"><i class="fa-solid fa-cart-shopping me-2"></i>Seu Carrinho & Pagamento</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div id="cart-items-container" class="mb-3">
+                        <!-- Itens inseridos dinamicamente via JS -->
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
+                        <span>Total:</span>
+                        <span id="cart-total" class="text-wine">R$ 0,00</span>
+                    </div>
+
+                    <!-- Seção de Pagamento -->
+                    <div id="checkout-form-section" style="display: none;">
+                        <h6 class="fw-bold text-dark mb-3">Escolha a Forma de Pagamento</h6>
+                        <div class="mb-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="pagamento" id="pagPix" checked>
+                                <label class="form-check-label" for="pagPix">PIX (Aprovação imediata)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="pagamento" id="pagCard">
+                                <label class="form-check-label" for="pagCard">Cartão de Crédito / Débito</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="radio" name="pagamento" id="pagDinheiro">
+                                <label class="form-check-label" for="pagDinheiro">Dinheiro na Entrega / Mesa</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-muted">Número da Mesa ou Endereço de Entrega</label>
+                            <input type="text" id="checkout-mesa" class="form-control rounded-3" placeholder="Ex: Mesa 04 ou Rua das Flores, 100">
+                        </div>
+                        <button class="btn btn-success w-100 py-2 rounded-pill fw-bold shadow-sm" onclick="finalizePayment()">
+                            <i class="fa-solid fa-check-circle me-2"></i>Finalizar Compra
+                        </button>
+                    </div>
+
+                    <div id="cart-empty-msg" class="text-center text-muted py-3">
+                        Seu carrinho está vazio. Adicione pratos do cardápio!
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm" data-bs-dismiss="modal">Continuar Comprando</button>
+                    <button type="button" id="btn-proceed-checkout" class="btn btn-wine rounded-pill btn-sm" style="display: none;" onclick="showCheckoutSection()">Ir para Pagamento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Feedback Personalizado -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content rounded-4 border-0 shadow text-center p-4">
+                <div class="text-success fs-1 mb-2" id="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h5 class="fw-bold font-serif mb-2" id="feedback-title">Sucesso!</h5>
+                <p class="text-muted small mb-3" id="feedback-text">Mensagem enviada com sucesso.</p>
+                <button type="button" class="btn btn-wine btn-sm rounded-pill w-100" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let cart = [];
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.section-view').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.navbar-nav .nav-link').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('view-' + tabId).classList.add('active');
+            document.getElementById('nav-' + tabId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const navbarCollapse = document.getElementById('navbarNav');
+            if (navbarCollapse.classList.contains('show')) {
+                new bootstrap.Collapse(navbarCollapse).toggle();
+            }
+        }
+
+        function addToCart(name, price) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartBadge();
+            showCustomModal("Item Adicionado!", `${name} foi adicionado ao seu carrinho.`, "success");
+        }
+
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-badge').innerText = totalItems;
+        }
+
+        function openCartModal() {
+            renderCartItems();
+            new bootstrap.Modal(document.getElementById('cartModal')).show();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const totalContainer = document.getElementById('cart-total');
+            const checkoutSection = document.getElementById('checkout-form-section');
+            const btnCheckout = document.getElementById('btn-proceed-checkout');
+            const emptyMsg = document.getElementById('cart-empty-msg');
+
+            if (cart.length === 0) {
+                container.innerHTML = '';
+                totalContainer.innerText = 'R$ 0,00';
+                checkoutSection.style.display = 'none';
+                btnCheckout.style.display = 'none';
+                emptyMsg.style.display = 'block';
+                return;
+            }
+
+            emptyMsg.style.display = 'none';
+            btnCheckout.style.display = 'inline-block';
+            let html = '<ul class="list-group list-group-flush">';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                let subtotal = item.price * item.qty;
+                total += subtotal;
+                html += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <div>
+                            <h6 class="mb-0 fw-bold">${item.name}</h6>
+                            <small class="text-muted">R$ ${item.price.toFixed(2)} x ${item.qty}</small>
+                        </div>
+                        <div>
+                            <span class="fw-bold text-wine me-3">R$ ${subtotal.toFixed(2)}</span>
+                            <button class="btn btn-sm btn-outline-danger rounded-circle" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </li>
+                `;
+            });
+            html += '</ul>';
+            container.innerHTML = html;
+            totalContainer.innerText = `R$ ${total.toFixed(2)}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function showCheckoutSection() {
+            document.getElementById('checkout-form-section').style.display = 'block';
+            document.getElementById('btn-proceed-checkout').style.display = 'none';
+        }
+
+        function finalizePayment() {
+            const destino = document.getElementById('checkout-mesa').value;
+            if (!destino) {
+                showCustomModal("Atenção", "Por favor, informe a mesa ou endereço de entrega.", "warning");
+                return;
+            }
+
+            bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+            showCustomModal("Pedido Concluído!", `Pedido realizado com sucesso para: ${destino}! Agradecemos a preferência.`, "success");
+            cart = [];
+            updateCartBadge();
+            document.getElementById('checkout-mesa').value = '';
+            document.getElementById('checkout-form-section').style.display = 'none';
+        }
+
+        function handleReservation(event) {
+            event.preventDefault();
+            const nome = document.getElementById('res-nome').value;
+            const data = document.getElementById('res-data').value;
+            const horario = document.getElementById('res-horario').value;
+
+            showCustomModal("Reserva Confirmada!", `Parabéns, ${nome}! Sua mesa foi reservada para o dia ${data} às ${horario}.`, "success");
+            event.target.reset();
+        }
+
+        function showCustomModal(title, text, type) {
+            document.getElementById('feedback-title').innerText = title;
+            document.getElementById('feedback-text').innerText = text;
+            const iconEl = document.getElementById('feedback-icon');
+            if (type === 'success') {
+                iconEl.className = 'text-success fs-1 mb-2';
+                iconEl.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+            } else {
+                iconEl.className = 'text-warning fs-1 mb-2';
+                iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            }
+            new bootstrap.Modal(document.getElementById('feedbackModal')).show();
+        }
+    </script>
+</body>
+</html>
